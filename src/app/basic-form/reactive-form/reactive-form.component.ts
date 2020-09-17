@@ -37,5 +37,4 @@ export class ReactiveFormComponent implements OnInit {
         formControl.updateValueAndValidity();
     });
   }
-
 }
