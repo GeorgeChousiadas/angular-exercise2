@@ -1,0 +1,103 @@
+<form [formGroup]="myNewForm" (submit)="formSubmit(myNewForm)">
+
+    <!----------------------------- First name ---------------------->
+    <div class="form-group">
+      <label  for="firstNameInput">First Name</label>
+      <input formControlName="firstName" type="text"
+              class="form-control"
+              id="firstNameInput"
+              placeholder="Enter first name">
+
+              <div *ngIf="myNewForm.controls.firstName.errors?.minlength &&
+                myNewForm.controls.firstName.dirty" class="text-danger">
+                The minimum length is 3
+              </div>
+              
+              <div *ngIf="myNewForm.controls.firstName.errors?.required &&
+                myNewForm.controls.firstName.dirty" class="text-danger">
+                Field is required
+              </div>
+    </div>
+    <!----------------------------- First name ---------------------->
+  
+
+    <!----------------------------- Last name ----------------------->
+    <div class="form-group">
+      <label  for="lastNameInput">Last Name</label>
+      <input formControlName="lastName" type="text"
+              class="form-control"
+              id="lastNameInput"
+              placeholder="Enter last name">
+              <div *ngIf="myNewForm.controls.lastName.errors?.required &&
+                myNewForm.controls.lastName.dirty" class="text-danger">
+                Field is required
+              </div>
+    </div>
+    <!----------------------------- Last name ----------------------->
+  
+
+    <!--------------------------- is experienced -------------------->
+    <div class="form-group form-check">
+      <input class="form-check-input"  type="checkbox" formControlName="isExpirienced">
+      <label class="form-check-label">I have experience > 2 yrs </label>
+    </div>
+    <!--------------------------- is experienced -------------------->
+  
+
+    <!-------------------------- Angular preference ----------------->
+    <div class="form-group">
+
+      <label class="font-weight-bold">Angular Preferene</label>
+      <div class="form-check">
+          
+          <!-- input 1 for radio button -->
+          <input type="radio" formControlName="angularPreference" value="1">
+          <label class="form-check-label" for="angularjs">angularJs</label>
+      </div>
+  
+      <div class="form-check">
+          <!-- input 2 for radio button -->
+          <input type="radio" formControlName="angularPreference" value="2">
+          <label class="form-check-label" for="angular">angular</label>
+      </div>
+      <div *ngIf="myNewForm.controls.angularPreference.invalid &&
+        myNewForm.controls.angularPreference.dirty" class="text-danger">
+        Field is required
+      </div>
+  
+    </div>
+    <!-------------------------- Angular preference ----------------->
+  
+
+    <!-------------------------- Favourite language ------------------>
+    <div class="form-group">
+      <label class="form-control-label">Favourite Language</label>
+      <!-- selector -->
+      <select formControlName="favouriteLanguage">
+          <option [ngValue]="null">Select</option>
+          <option *ngFor="let lang of programmingLanguages">
+          {{lang}}
+          </option>
+      </select>
+      <div *ngIf="myNewForm.controls.favouriteLanguage.invalid &&
+        myNewForm.controls.favouriteLanguage.dirty" class="text-danger">
+        Field is required
+      </div>
+    </div>
+    <!-------------------------- Favourite language ------------------>
+  
+    
+    <!--------------------------- JS Version ------------------------->
+    <div class="form-group">
+      <label>JS Version</label>
+      <input class="form-control" formControlName="jsversion" type="text">
+      <div *ngIf="myNewForm.controls.jsversion.invalid &&
+        myNewForm.controls.jsversion.dirty" class="text-danger">
+        Field is required
+      </div>
+    </div>
+    <!--------------------------- JS Version ------------------------->
+  
+
+    <button class="btn btn-primary" [disabled]="!myNewForm.valid">Submit</button>
+  </form>
